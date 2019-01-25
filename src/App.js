@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Navbar from "./components/Navbar";
 import CharacterCard from "./components/CharacterCard";
 import characters from "./characters.json";
+import YouTube from "react-youtube";
 
 class App extends Component {
 
   state = {
     characters,
     currentScore: 0,
-    topScore: 0
-  }
+    topScore: 0, 
+    message: "",
+    videoOptions: {}
+  };
 
 
   componentDidMount() {
@@ -27,10 +29,18 @@ class App extends Component {
       return data;
   };
 
-
-
-
   handleClick = id => {
+
+    let videoOptions = {
+      playerVars: {
+        autoplay: 1,
+        controls: 0,
+        rel: 0,
+        showinfo: 0,
+      }
+    };
+
+
     // handle correct click
     console.log(id);
     let correctGuess = false;
@@ -47,32 +57,67 @@ class App extends Component {
 
     })
 
+    if (correctGuess === true) {
+      this.state.currentScore++;
 
-    // if (correctGuess) --ternary oper 
-    // check if guess is correct, run function that handles correct guess (send it method of charactersCopy)
+      if (this.state.topScore < this.state.currentScore){
+        this.state.topScore = this.state.currentScore;
+      }
+      this.state.message="";
+      this.state.shuffle(characters)
+      // this.setState({currentScore, topScore, characters, message, videoOptions});
+    } else {
+      // this.state.youLost();
+    }
 
-    // update current score
-    // check if currentscore > topscore
-    // display topscore
+  };
+
+  youLost = () => {
+    if (this.state.topScore < this.state.currentScore){
+      this.state.topScore = this.state.currentScore;
+    }
+    else if (this.state.currentScore === 12) {
+      console.log("You won!");
+      this.state.message="Woo! You won! Click any picture to play again."
+    } else {
+      this.state.message = "Aw, ya lost."
+    }
+    this.state.currentScore = 0;
+    this.state.characters.map((character) => {
+      return character.clicked = false;
+    });
+      // this.setState({currentScore, topScore, characters, message, videoOptions});  
+  }
 
 
 
-    // if not correct, run method that resets game
-    // handle incorrect click
-
-
+  _onEnd(event) {
+    event.target.playVideo();
   }
 
 
   render() {
     return (
      <div>
+      <div className="video-background">
+      <div className="video-foreground">
+          <YouTube
+            videoId="aook_jC2Wxc"
+            opts={this.state.videoOptions}
+            className="video-iframe"
+            onReady={this._onReady}
+            onEnd={this._onEnd}
+          />
+        </div>
+      </div>
        <Navbar currentScore={this.state.currentScore} topScore={this.state.topScore}/>
-       {this.state.characters.map(character => (
+       {this.state.characters.map((character, i) => (
          <CharacterCard 
-         key={character.id}
+         video={this.backgroundVid}
+         id={character.id}
          character={character}
          click={this.handleClick}
+         key={i}
          />
        ))}
      </div>

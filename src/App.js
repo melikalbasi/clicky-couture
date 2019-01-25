@@ -29,6 +29,41 @@ class App extends Component {
 
 
 
+
+  handleClick = id => {
+    // handle correct click
+    console.log(id);
+    let correctGuess = false;
+    var charactersCopy = this.state.characters.map(character => {
+      const characterCopy = {...character}
+      if (characterCopy.id === id) {
+        if (characterCopy.clicked = false) {
+          characterCopy.clicked = true;
+          correctGuess = true;
+          
+        }
+      }
+      return characterCopy;
+
+    })
+
+
+    // if (correctGuess) --ternary oper 
+    // check if guess is correct, run function that handles correct guess (send it method of charactersCopy)
+
+    // update current score
+    // check if currentscore > topscore
+    // display topscore
+
+
+
+    // if not correct, run method that resets game
+    // handle incorrect click
+
+
+  }
+
+
   render() {
     return (
      <div>

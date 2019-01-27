@@ -51,14 +51,14 @@ class App extends Component {
       this.setState({
         currentScore: 0,
         clicked: [],
-        message: "You lost!"
+        message: "You lost! \nClick a card to restart the game."
       });
     } else {
       this.setState({
         currentScore: this.state.currentScore + 1,
         topScore: this.state.topScore + 1,
         clicked: this.state.clicked.concat(id),
-        message: "You got it!"
+        message: ""
       }, () => {
         if (this.state.currentScore === 12) {
           this.setState({
@@ -75,55 +75,6 @@ class App extends Component {
     };
 
   };
-
-  //   // handle correct click
-  //   console.log(id);
-  //   let correctGuess = false;
-  //   var charactersCopy = this.state.characters.map(character => {
-  //     const characterCopy = {...character}
-  //     if (characterCopy.id === id) {
-  //       if (characterCopy.clicked = false) {
-  //         characterCopy.clicked = true;
-  //         correctGuess = true;
-          
-  //       }
-  //     }
-  //     return characterCopy;
-
-  //   })
-
-  //   if (correctGuess === true) {
-  //     this.state.currentScore++;
-
-  //     if (this.state.topScore < this.state.currentScore){
-  //       this.state.topScore = this.state.currentScore;
-  //     }
-  //     this.state.message="";
-  //     this.state.shuffle(characters)
-  //     // this.setState({currentScore, topScore, characters, message, videoOptions});
-  //   } else {
-  //     // this.state.youLost();
-  //   }
-
-  // };
-
-  // youLost = () => {
-  //   if (this.state.topScore < this.state.currentScore){
-  //     this.state.topScore = this.state.currentScore;
-  //   }
-  //   else if (this.state.currentScore === 12) {
-  //     console.log("You won!");
-  //     this.state.message="Woo! You won! Click any picture to play again."
-  //   } else {
-  //     this.state.message = "Aw, ya lost."
-  //   }
-  //   this.state.currentScore = 0;
-  //   this.state.characters.map((character) => {
-  //     return character.clicked = false;
-  //   });
-  //     // this.setState({currentScore, topScore, characters, message, videoOptions});  
-  // }
-
 
 
   _onReady(event) {
@@ -149,7 +100,11 @@ class App extends Component {
           />
         </div>
       </div>
+
        <Navbar currentScore={this.state.currentScore} topScore={this.state.topScore} message={this.state.message}/>
+       
+       <div className="row justify-content-center no-gutters">
+
        {this.state.characters.map((character, i) => (
          <CharacterCard 
          video={this.backgroundVid}
@@ -159,10 +114,14 @@ class App extends Component {
          key={i}
          />
        ))}
+       </div>
      </div>
     );
   }
 }
 
 export default App;
+
+
+
 

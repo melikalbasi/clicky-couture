@@ -70,3 +70,29 @@ div {
   align-content: flex-start;
   overflow: auto;
 }
+
+.jumbotron {
+  font-size: 50px;
+  font-weight: bold;
+  background-color: rgb(238, 206, 211);
+  width: 9000px;
+  height: 300px;
+  margin-top: 0px;
+  padding: 3%;
+  font-family: 'Playfair Display SC', serif;
+}
+
+#rules {
+  font-size: 20px;
+}
+
+#scores {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#message {
+  font-size: 30px;
+  font-weight: bold;
+  color: crimson;
+}

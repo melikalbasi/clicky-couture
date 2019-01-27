@@ -62,7 +62,7 @@ class App extends Component {
       }, () => {
         if (this.state.currentScore === 12) {
           this.setState({
-            message: "You won!"
+            message: "You won! Now enjoy the show..."
           });
         }
       });

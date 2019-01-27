@@ -5,6 +5,8 @@ import CharacterCard from "./components/CharacterCard";
 import characters from "./characters.json";
 import YouTube from "react-youtube";
 
+const characterCopy = characters
+
 class App extends Component {
 
   state = {
@@ -12,6 +14,7 @@ class App extends Component {
     currentScore: 0,
     topScore: 0, 
     message: "",
+    clicked: [],
     videoOptions: {}
   };
 
@@ -40,56 +43,92 @@ class App extends Component {
       }
     };
 
+    this.setState({
+      characters: this.shuffle(characterCopy)
+    });
 
-    // handle correct click
-    console.log(id);
-    let correctGuess = false;
-    var charactersCopy = this.state.characters.map(character => {
-      const characterCopy = {...character}
-      if (characterCopy.id === id) {
-        if (characterCopy.clicked = false) {
-          characterCopy.clicked = true;
-          correctGuess = true;
-          
-        }
-      }
-      return characterCopy;
-
-    })
-
-    if (correctGuess === true) {
-      this.state.currentScore++;
-
-      if (this.state.topScore < this.state.currentScore){
-        this.state.topScore = this.state.currentScore;
-      }
-      this.state.message="";
-      this.state.shuffle(characters)
-      // this.setState({currentScore, topScore, characters, message, videoOptions});
+    if (this.state.clicked.includes(id)) {
+      this.setState({
+        currentScore: 0,
+        clicked: [],
+        message: "You lost!"
+      });
     } else {
-      // this.state.youLost();
-    }
+      this.setState({
+        currentScore: this.state.currentScore + 1,
+        topScore: this.state.topScore + 1,
+        clicked: this.state.clicked.concat(id),
+        message: "You got it!"
+      }, () => {
+        if (this.state.currentScore === 12) {
+          this.setState({
+            message: "You won!"
+          });
+        }
+      });
+
+      if (this.state.currentScore < this.state.topScore) {
+        this.setState({
+          topScore: this.state.topScore
+        });
+      }
+    };
 
   };
 
-  youLost = () => {
-    if (this.state.topScore < this.state.currentScore){
-      this.state.topScore = this.state.currentScore;
-    }
-    else if (this.state.currentScore === 12) {
-      console.log("You won!");
-      this.state.message="Woo! You won! Click any picture to play again."
-    } else {
-      this.state.message = "Aw, ya lost."
-    }
-    this.state.currentScore = 0;
-    this.state.characters.map((character) => {
-      return character.clicked = false;
-    });
-      // this.setState({currentScore, topScore, characters, message, videoOptions});  
+  //   // handle correct click
+  //   console.log(id);
+  //   let correctGuess = false;
+  //   var charactersCopy = this.state.characters.map(character => {
+  //     const characterCopy = {...character}
+  //     if (characterCopy.id === id) {
+  //       if (characterCopy.clicked = false) {
+  //         characterCopy.clicked = true;
+  //         correctGuess = true;
+          
+  //       }
+  //     }
+  //     return characterCopy;
+
+  //   })
+
+  //   if (correctGuess === true) {
+  //     this.state.currentScore++;
+
+  //     if (this.state.topScore < this.state.currentScore){
+  //       this.state.topScore = this.state.currentScore;
+  //     }
+  //     this.state.message="";
+  //     this.state.shuffle(characters)
+  //     // this.setState({currentScore, topScore, characters, message, videoOptions});
+  //   } else {
+  //     // this.state.youLost();
+  //   }
+
+  // };
+
+  // youLost = () => {
+  //   if (this.state.topScore < this.state.currentScore){
+  //     this.state.topScore = this.state.currentScore;
+  //   }
+  //   else if (this.state.currentScore === 12) {
+  //     console.log("You won!");
+  //     this.state.message="Woo! You won! Click any picture to play again."
+  //   } else {
+  //     this.state.message = "Aw, ya lost."
+  //   }
+  //   this.state.currentScore = 0;
+  //   this.state.characters.map((character) => {
+  //     return character.clicked = false;
+  //   });
+  //     // this.setState({currentScore, topScore, characters, message, videoOptions});  
+  // }
+
+
+
+  _onReady(event) {
+    event.target.playVideo();
   }
-
-
 
   _onEnd(event) {
     event.target.playVideo();
@@ -110,7 +149,7 @@ class App extends Component {
           />
         </div>
       </div>
-       <Navbar currentScore={this.state.currentScore} topScore={this.state.topScore}/>
+       <Navbar currentScore={this.state.currentScore} topScore={this.state.topScore} message={this.state.message}/>
        {this.state.characters.map((character, i) => (
          <CharacterCard 
          video={this.backgroundVid}

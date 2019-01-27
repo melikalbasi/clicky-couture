@@ -56,3 +56,17 @@
     .video-foreground { width: 300%; left: -100%; }
 }
 
+body {
+  color: azure;
+}
+
+div {
+  padding-top: 50px;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 20px;
+  justify-content: space-around;
+  align-content: flex-start;
+  overflow: auto;
+}

@@ -6,7 +6,7 @@ Fashion house Viktor & Rolf released their 2019 Couture Collection making a stat
 
 ## Getting Started
 
-Play this game [here](), or alternatively, you can clone down this repo and play locally.
+Play this game [here](https://melikalbasi.github.io/clicky-couture/), or alternatively, you can clone down this repo and play locally.
 
 ### Prerequisites
 

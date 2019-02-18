@@ -1,13 +1,13 @@
 {
-  "main.css": "/clicky-game/static/css/main.bcda9b13.chunk.css",
-  "main.js": "/clicky-game/static/js/main.f999e064.chunk.js",
-  "main.js.map": "/clicky-game/static/js/main.f999e064.chunk.js.map",
-  "static/js/1.c516a146.chunk.js": "/clicky-game/static/js/1.c516a146.chunk.js",
-  "static/js/1.c516a146.chunk.js.map": "/clicky-game/static/js/1.c516a146.chunk.js.map",
-  "runtime~main.js": "/clicky-game/static/js/runtime~main.6acb6692.js",
-  "runtime~main.js.map": "/clicky-game/static/js/runtime~main.6acb6692.js.map",
-  "static/css/main.bcda9b13.chunk.css.map": "/clicky-game/static/css/main.bcda9b13.chunk.css.map",
-  "index.html": "/clicky-game/index.html",
-  "precache-manifest.7fd168f4f6199c4f83c977cae6f36ac4.js": "/clicky-game/precache-manifest.7fd168f4f6199c4f83c977cae6f36ac4.js",
-  "service-worker.js": "/clicky-game/service-worker.js"
+  "main.css": "/clicky-couture/static/css/main.bcda9b13.chunk.css",
+  "main.js": "/clicky-couture/static/js/main.a6269540.chunk.js",
+  "main.js.map": "/clicky-couture/static/js/main.a6269540.chunk.js.map",
+  "static/js/1.c3bbc021.chunk.js": "/clicky-couture/static/js/1.c3bbc021.chunk.js",
+  "static/js/1.c3bbc021.chunk.js.map": "/clicky-couture/static/js/1.c3bbc021.chunk.js.map",
+  "runtime~main.js": "/clicky-couture/static/js/runtime~main.12f22e6c.js",
+  "runtime~main.js.map": "/clicky-couture/static/js/runtime~main.12f22e6c.js.map",
+  "static/css/main.bcda9b13.chunk.css.map": "/clicky-couture/static/css/main.bcda9b13.chunk.css.map",
+  "index.html": "/clicky-couture/index.html",
+  "precache-manifest.67538219fc0831ed4bed48267cce5267.js": "/clicky-couture/precache-manifest.67538219fc0831ed4bed48267cce5267.js",
+  "service-worker.js": "/clicky-couture/service-worker.js"
 }
